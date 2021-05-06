@@ -35,4 +35,13 @@ public class ConstantKeywordAST implements AST {
   public void accept(ASTVisitor visitor) {
     visitor.visitConstantKeywordAST(this);
   }
+
+  @Override
+  public String print() {
+    return "{"
+            + value.print()
+            + "|"
+            + child.print()
+            + "}";
+  }
 }

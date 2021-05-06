@@ -1,0 +1,1 @@
+{VARIABLE_KEYWORD: let|{{{null|IDENTIFIER: x|null}|COLON: :|{null|STRING_TYPE: string|null}}|EQUALS: =|{null|STRING: Hello world|null}}}

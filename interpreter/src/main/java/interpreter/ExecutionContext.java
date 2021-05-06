@@ -151,6 +151,11 @@ public class ExecutionContext {
     this.result = result;
   }
 
+  public void setDoubleResult(String result) {
+    this.resultMode = ResultMode.DOUBLE;
+    this.result = result;
+  }
+
   public void setStringResult(String value) {
     this.result = value;
     this.resultMode = ResultMode.STRING;

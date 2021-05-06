@@ -11,4 +11,14 @@ public interface AST {
   AST getLeftChild();
 
   void accept(ASTVisitor visitor);
+
+  default String print() {
+    return "{"
+            + ((getLeftChild() == null) ? "null" : getLeftChild().print())
+            + "|"
+            + getValue().print()
+            + "|"
+            + ((getRightChild() == null) ? "null" : getRightChild().print())
+            + "}";
+  }
 }

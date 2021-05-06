@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     implementation project(':structures')
+    testImplementation project(':lexer')
 }

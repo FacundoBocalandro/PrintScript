@@ -2,6 +2,8 @@ package ast;
 
 import ASTVisitor.ASTVisitor;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import token.Token;
 
 public class IfBlockAST implements AST {
@@ -35,5 +37,14 @@ public class IfBlockAST implements AST {
   @Override
   public void accept(ASTVisitor visitor) {
     children.forEach(child -> child.accept(visitor));
+  }
+
+  @Override
+  public String print() {
+    return "{"
+            + value.print()
+            + "|"
+            + children.stream().map(AST::print).collect(Collectors.joining("->"))
+            + "}";
   }
 }
