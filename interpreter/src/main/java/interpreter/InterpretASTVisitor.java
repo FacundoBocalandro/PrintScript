@@ -95,7 +95,7 @@ public class InterpretASTVisitor implements ASTVisitor {
 
   @Override
   public void visitNumberAST(NumberAST numberAST) {
-    executionContext.setResult(numberAST.getValue().getValue());
+    executionContext.setDoubleResult(numberAST.getValue().getValue());
   }
 
   @Override

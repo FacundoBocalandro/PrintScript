@@ -6,3 +6,13 @@ dependencies {
     implementation project(':interpreter')
     implementation project(':structures')
 }
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.0
+            }
+        }
+    }
+}

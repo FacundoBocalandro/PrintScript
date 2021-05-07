@@ -1,0 +1,2 @@
+{VARIABLE_KEYWORD: let|{{{null|IDENTIFIER: a|null}|COLON: :|{null|NUMBER_TYPE: number|null}}|EQUALS: =|{{{{null|NUMBER: 3|null}|PLUS_OPERATOR: +|{{{null|NUMBER: 5|null}|MULTIPLICATION_OPERATOR: *|{null|NUMBER: 10|null}}|DIVISION_OPERATOR: /|{null|NUMBER: 2|null}}}|MINUS_OPERATOR: -|{{{null|NUMBER: 8|null}|DIVISION_OPERATOR: /|{null|NUMBER: 4|null}}|MULTIPLICATION_OPERATOR: *|{null|NUMBER: 7|null}}}|PLUS_OPERATOR: +|{null|NUMBER: 2|null}}}}
+{CONSTANT_KEYWORD: const|{{{null|IDENTIFIER: b|null}|COLON: :|{null|NUMBER_TYPE: number|null}}|EQUALS: =|{null|IDENTIFIER: a|null}}}

@@ -1,54 +1,62 @@
 import exceptions.BadTokenException;
+import java.io.FileNotFoundException;
 import java.util.List;
 import lexer.Lexer;
+import lexer.PrintScriptLexer1;
 import lexer.PrintScriptLexer2;
 import org.junit.jupiter.api.*;
 import token.Token;
-import token.TokenType;
 
 public class LexerTest {
+
   @Test
-  public void tokenShouldContainAll() throws BadTokenException {
-    Lexer lexer = new PrintScriptLexer2();
-    String statement = "let a: number = a * a;";
-    List<Token> tokens = lexer.lex(statement);
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.VARIABLE_KEYWORD).count());
-    Assertions.assertEquals(
-        3, tokens.stream().filter(token -> token.getType() == TokenType.IDENTIFIER).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.COLON).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.NUMBER_TYPE).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.EQUALS).count());
-    Assertions.assertEquals(
-        1,
-        tokens.stream()
-            .filter(token -> token.getType() == TokenType.MULTIPLICATION_OPERATOR)
-            .count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.ESC_CHAR).count());
+  public void invalid() {
+    String invalidStatement = "const x: int = |123|";
+
+    Assertions.assertThrows(
+        BadTokenException.class,
+        () -> {
+          Lexer lexer = new PrintScriptLexer1();
+          lexer.lex(invalidStatement);
+        });
   }
 
   @Test
-  public void tokenShouldContainAll_2() throws BadTokenException {
+  public void assignation() throws BadTokenException, FileNotFoundException {
+    Lexer lexer = new PrintScriptLexer1();
+    String codeDirectory = Utils.getCodeDirectory("assignation");
+    String outputDirectory = Utils.getOutputDirectory("assignation");
+
+    String code = Utils.getCode(codeDirectory);
+    List<Token> resultTokens = lexer.lex(code);
+
+    Assertions.assertEquals(
+        Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
+  }
+
+  @Test
+  public void operation() throws BadTokenException, FileNotFoundException {
     Lexer lexer = new PrintScriptLexer2();
-    String statement = "let str: string = \"!21432@!@##^&  TW#@1235&^*kl.lK:@@;'., \";";
-    List<Token> tokens = lexer.lex(statement);
+    String codeDirectory = Utils.getCodeDirectory("operation");
+    String outputDirectory = Utils.getOutputDirectory("operation");
+
+    String code = Utils.getCode(codeDirectory);
+    List<Token> resultTokens = lexer.lex(code);
+
     Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.VARIABLE_KEYWORD).count());
+        Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
+  }
+
+  @Test
+  public void conditional() throws BadTokenException, FileNotFoundException {
+    Lexer lexer = new PrintScriptLexer2();
+    String codeDirectory = Utils.getCodeDirectory("conditional");
+    String outputDirectory = Utils.getOutputDirectory("conditional");
+
+    String code = Utils.getCode(codeDirectory);
+    List<Token> resultTokens = lexer.lex(code);
+
     Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.IDENTIFIER).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.COLON).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.STRING_TYPE).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.EQUALS).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.STRING).count());
-    Assertions.assertEquals(
-        1, tokens.stream().filter(token -> token.getType() == TokenType.ESC_CHAR).count());
+        Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
   }
 }

@@ -41,6 +41,7 @@ public class PrintScriptLexer2 implements Lexer {
           push(new GreaterOrEqualsComparatorTokenHandler());
           push(new MinorComparatorTokenHandler());
           push(new MinorOrEqualsComparatorTokenHandler());
+          push(new EqualsComparatorTokenHandler());
         }
       };
 

@@ -35,4 +35,9 @@ public class FunctionNameAST implements AST {
   public void accept(ASTVisitor visitor) {
     visitor.visitFunctionNameAST(this);
   }
+
+  @Override
+  public String print() {
+    return "{" + value.print() + "|" + child.print() + "}";
+  }
 }

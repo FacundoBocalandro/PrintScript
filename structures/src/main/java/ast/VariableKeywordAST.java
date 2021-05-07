@@ -35,4 +35,9 @@ public class VariableKeywordAST implements AST {
   public void accept(ASTVisitor visitor) {
     visitor.visitVariableKeywordAST(this);
   }
+
+  @Override
+  public String print() {
+    return "{" + value.print() + "|" + child.print() + "}";
+  }
 }
