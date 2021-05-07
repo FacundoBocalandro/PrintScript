@@ -89,7 +89,7 @@ public class ParserTest {
 
   @Test
   public void assignation() throws FileNotFoundException {
-    Lexer lexer = new PrintScriptLexer1();
+    Lexer lexer = new PrintScriptLexer2();
     Parser parser = new Parser();
     String codeDirectory = Utils.getCodeDirectory("assignation");
     String outputDirectory = Utils.getOutputDirectory("assignation");
@@ -101,6 +101,8 @@ public class ParserTest {
         List<Token> resultTokens = lexer.lex(statement);
         return parser.parse(resultTokens);
       } catch (BadTokenException | ASTBuildException e) {
+        System.out.println(statement);
+        e.printStackTrace();
         throw new RuntimeException();
       }
     }).collect(Collectors.toList());
@@ -137,7 +139,7 @@ public class ParserTest {
 
   @Test
   public void operation() throws FileNotFoundException {
-    Lexer lexer = new PrintScriptLexer1();
+    Lexer lexer = new PrintScriptLexer2();
     Parser parser = new Parser();
     String codeDirectory = Utils.getCodeDirectory("operation");
     String outputDirectory = Utils.getOutputDirectory("operation");
@@ -156,5 +158,21 @@ public class ParserTest {
     String result = ASTs.stream().map(AST::print).collect(Collectors.joining("\n"));
 
     Assertions.assertEquals(result, Utils.getOutput(outputDirectory));
+  }
+
+  @Test
+  public void invalid() throws FileNotFoundException {
+    Lexer lexer = new PrintScriptLexer2();
+    Parser parser = new Parser();
+    String codeDirectory = Utils.getCodeDirectory("invalid");
+
+    List<String> statements = Utils.getCode(codeDirectory);
+
+    statements.forEach(statement -> {
+      System.out.println(statement);
+      Assertions.assertThrows(BadTokenException.class, () -> {
+        parser.parse(lexer.lex(statement));
+      });
+    });
   }
 }

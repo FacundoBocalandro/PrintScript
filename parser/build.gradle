@@ -6,3 +6,11 @@ dependencies {
     implementation project(':structures')
     testImplementation project(':lexer')
 }
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: 'builders/**')
+        }))
+    }
+}

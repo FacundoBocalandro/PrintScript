@@ -1,1 +1,6 @@
-{VARIABLE_KEYWORD: let|{{{null|IDENTIFIER: x|null}|COLON: :|{null|STRING_TYPE: string|null}}|EQUALS: =|{null|STRING: Hello world|null}}}
+{VARIABLE_KEYWORD: let|{{{null|IDENTIFIER: a|null}|COLON: :|{null|STRING_TYPE: string|null}}|EQUALS: =|{null|STRING: Hello world|null}}}
+{CONSTANT_KEYWORD: const|{{{null|IDENTIFIER: b|null}|COLON: :|{null|STRING_TYPE: string|null}}|EQUALS: =|{null|STRING: Bye world|null}}}
+{VARIABLE_KEYWORD: let|{{{null|IDENTIFIER: c|null}|COLON: :|{null|BOOLEAN_TYPE: boolean|null}}|COLON: :|{null|BOOLEAN: true|null}}}
+{CONSTANT_KEYWORD: const|{{{null|IDENTIFIER: d|null}|COLON: :|{null|BOOLEAN_TYPE: boolean|null}}|COLON: :|{null|BOOLEAN: false|null}}}
+{VARIABLE_KEYWORD: let|{{{null|IDENTIFIER: e|null}|COLON: :|{null|NUMBER_TYPE: number|null}}|EQUALS: =|{null|NUMBER: 1|null}}}
+{CONSTANT_KEYWORD: const|{{{null|IDENTIFIER: f|null}|COLON: :|{null|NUMBER_TYPE: number|null}}|EQUALS: =|{null|NUMBER: 2|null}}}
