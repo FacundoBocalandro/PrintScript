@@ -1,14 +1,11 @@
 import ast.AST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lexer.Lexer;
-import lexer.PrintScriptLexer1;
 import lexer.PrintScriptLexer2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,6 +13,7 @@ import parser.Parser;
 import token.Token;
 import token.TokenType;
 
+@SuppressWarnings("PMD")
 public class ParserTest {
   private static String VARIABLE_KEYWORD = "let";
 
@@ -96,16 +94,20 @@ public class ParserTest {
 
     List<String> statements = Utils.getCode(codeDirectory);
 
-    List<AST> ASTs = statements.stream().map(statement -> {
-      try {
-        List<Token> resultTokens = lexer.lex(statement);
-        return parser.parse(resultTokens);
-      } catch (BadTokenException | ASTBuildException e) {
-        System.out.println(statement);
-        e.printStackTrace();
-        throw new RuntimeException();
-      }
-    }).collect(Collectors.toList());
+    List<AST> ASTs =
+        statements.stream()
+            .map(
+                statement -> {
+                  try {
+                    List<Token> resultTokens = lexer.lex(statement);
+                    return parser.parse(resultTokens);
+                  } catch (BadTokenException | ASTBuildException e) {
+                    System.out.println(statement);
+                    e.printStackTrace();
+                    throw new RuntimeException();
+                  }
+                })
+            .collect(Collectors.toList());
 
     String result = ASTs.stream().map(AST::print).collect(Collectors.joining("\n"));
 
@@ -121,16 +123,20 @@ public class ParserTest {
 
     List<String> statements = Utils.getCode(codeDirectory);
 
-    List<AST> ASTs = statements.stream().map(statement -> {
-      try {
-        List<Token> resultTokens = lexer.lex(statement);
-        return parser.parse(resultTokens);
-      } catch (BadTokenException | ASTBuildException e) {
-        System.out.println(statement);
-        e.printStackTrace();
-        throw new RuntimeException();
-      }
-    }).collect(Collectors.toList());
+    List<AST> ASTs =
+        statements.stream()
+            .map(
+                statement -> {
+                  try {
+                    List<Token> resultTokens = lexer.lex(statement);
+                    return parser.parse(resultTokens);
+                  } catch (BadTokenException | ASTBuildException e) {
+                    System.out.println(statement);
+                    e.printStackTrace();
+                    throw new RuntimeException();
+                  }
+                })
+            .collect(Collectors.toList());
 
     String result = ASTs.stream().map(AST::print).collect(Collectors.joining("\n"));
 
@@ -146,14 +152,18 @@ public class ParserTest {
 
     List<String> statements = Utils.getCode(codeDirectory);
 
-    List<AST> ASTs = statements.stream().map(statement -> {
-      try {
-        List<Token> resultTokens = lexer.lex(statement);
-        return parser.parse(resultTokens);
-      } catch (BadTokenException | ASTBuildException e) {
-        throw new RuntimeException();
-      }
-    }).collect(Collectors.toList());
+    List<AST> ASTs =
+        statements.stream()
+            .map(
+                statement -> {
+                  try {
+                    List<Token> resultTokens = lexer.lex(statement);
+                    return parser.parse(resultTokens);
+                  } catch (BadTokenException | ASTBuildException e) {
+                    throw new RuntimeException();
+                  }
+                })
+            .collect(Collectors.toList());
 
     String result = ASTs.stream().map(AST::print).collect(Collectors.joining("\n"));
 
@@ -168,11 +178,14 @@ public class ParserTest {
 
     List<String> statements = Utils.getCode(codeDirectory);
 
-    statements.forEach(statement -> {
-      System.out.println(statement);
-      Assertions.assertThrows(BadTokenException.class, () -> {
-        parser.parse(lexer.lex(statement));
-      });
-    });
+    statements.forEach(
+        statement -> {
+          System.out.println(statement);
+          Assertions.assertThrows(
+              BadTokenException.class,
+              () -> {
+                parser.parse(lexer.lex(statement));
+              });
+        });
   }
 }

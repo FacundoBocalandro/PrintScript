@@ -38,10 +38,6 @@ public class VariableKeywordAST implements AST {
 
   @Override
   public String print() {
-    return "{"
-            + value.print()
-            + "|"
-            + child.print()
-            + "}";
+    return "{" + value.print() + "|" + child.print() + "}";
   }
 }

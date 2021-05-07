@@ -3,7 +3,6 @@ package ast;
 import ASTVisitor.ASTVisitor;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import token.Token;
 
 public class ElseBlockAST implements AST {
@@ -42,9 +41,9 @@ public class ElseBlockAST implements AST {
   @Override
   public String print() {
     return "{"
-            + value.print()
-            + "|"
-            + children.stream().map(AST::print).collect(Collectors.joining("->"))
-            + "}";
+        + value.print()
+        + "|"
+        + children.stream().map(AST::print).collect(Collectors.joining("->"))
+        + "}";
   }
 }

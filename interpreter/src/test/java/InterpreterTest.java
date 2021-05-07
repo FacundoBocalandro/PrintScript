@@ -1,19 +1,11 @@
-import ast.AST;
 import exceptions.ASTBuildException;
 import exceptions.BadTokenException;
-
+import interpreter.Interpreter;
 import java.io.FileNotFoundException;
 import java.security.InvalidAlgorithmParameterException;
 import java.util.LinkedList;
 import java.util.List;
-
-import interpreter.Interpreter;
-import lexer.Lexer;
-import lexer.PrintScriptLexer1;
-import lexer.PrintScriptLexer2;
 import org.junit.jupiter.api.*;
-import parser.Parser;
-import token.Token;
 
 public class InterpreterTest {
 
@@ -21,10 +13,12 @@ public class InterpreterTest {
   public void invalid() {
     String invalidStatement = "const x: int = |123|";
 
-    Assertions.assertThrows(BadTokenException.class, () -> {
-      Interpreter interpreter = new Interpreter("1.0", new LinkedList<>()::add);
-      interpreter.interpret(invalidStatement);
-    });
+    Assertions.assertThrows(
+        BadTokenException.class,
+        () -> {
+          Interpreter interpreter = new Interpreter("1.0", new LinkedList<>()::add);
+          interpreter.interpret(invalidStatement);
+        });
   }
 
   @Test
@@ -35,13 +29,15 @@ public class InterpreterTest {
     String codeDirectory = Utils.getCodeDirectory("assignation");
     String outputDirectory = Utils.getOutputDirectory("assignation");
 
-    Utils.getCode(codeDirectory).forEach(statement -> {
-      try {
-        interpreter.interpret(statement);
-      } catch (BadTokenException | ASTBuildException e) {
-        e.printStackTrace();
-      }
-    });
+    Utils.getCode(codeDirectory)
+        .forEach(
+            statement -> {
+              try {
+                interpreter.interpret(statement);
+              } catch (BadTokenException | ASTBuildException e) {
+                e.printStackTrace();
+              }
+            });
 
     Assertions.assertEquals(String.join("\n", output), Utils.getOutput(outputDirectory));
   }
@@ -54,13 +50,15 @@ public class InterpreterTest {
     String codeDirectory = Utils.getCodeDirectory("operation");
     String outputDirectory = Utils.getOutputDirectory("operation");
 
-    Utils.getCode(codeDirectory).forEach(statement -> {
-      try {
-        interpreter.interpret(statement);
-      } catch (BadTokenException | ASTBuildException e) {
-        e.printStackTrace();
-      }
-    });
+    Utils.getCode(codeDirectory)
+        .forEach(
+            statement -> {
+              try {
+                interpreter.interpret(statement);
+              } catch (BadTokenException | ASTBuildException e) {
+                e.printStackTrace();
+              }
+            });
 
     Assertions.assertEquals(String.join("\n", output), Utils.getOutput(outputDirectory));
   }
@@ -73,16 +71,17 @@ public class InterpreterTest {
     String codeDirectory = Utils.getCodeDirectory("conditional");
     String outputDirectory = Utils.getOutputDirectory("conditional");
 
-    Utils.getCode(codeDirectory).forEach(statement -> {
-      try {
-        interpreter.interpret(statement);
-      } catch (BadTokenException | ASTBuildException e) {
-        System.out.println(statement);
-        e.printStackTrace();
-      }
-    });
+    Utils.getCode(codeDirectory)
+        .forEach(
+            statement -> {
+              try {
+                interpreter.interpret(statement);
+              } catch (BadTokenException | ASTBuildException e) {
+                System.out.println(statement);
+                e.printStackTrace();
+              }
+            });
 
     Assertions.assertEquals(String.join("\n", output), Utils.getOutput(outputDirectory));
   }
-
 }

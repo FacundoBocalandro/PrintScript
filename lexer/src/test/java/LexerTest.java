@@ -1,8 +1,6 @@
 import exceptions.BadTokenException;
-
 import java.io.FileNotFoundException;
 import java.util.List;
-
 import lexer.Lexer;
 import lexer.PrintScriptLexer1;
 import lexer.PrintScriptLexer2;
@@ -15,10 +13,12 @@ public class LexerTest {
   public void invalid() {
     String invalidStatement = "const x: int = |123|";
 
-    Assertions.assertThrows(BadTokenException.class, () -> {
-      Lexer lexer = new PrintScriptLexer1();
-      lexer.lex(invalidStatement);
-    });
+    Assertions.assertThrows(
+        BadTokenException.class,
+        () -> {
+          Lexer lexer = new PrintScriptLexer1();
+          lexer.lex(invalidStatement);
+        });
   }
 
   @Test
@@ -30,7 +30,8 @@ public class LexerTest {
     String code = Utils.getCode(codeDirectory);
     List<Token> resultTokens = lexer.lex(code);
 
-    Assertions.assertEquals(Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
+    Assertions.assertEquals(
+        Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
   }
 
   @Test
@@ -42,7 +43,8 @@ public class LexerTest {
     String code = Utils.getCode(codeDirectory);
     List<Token> resultTokens = lexer.lex(code);
 
-    Assertions.assertEquals(Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
+    Assertions.assertEquals(
+        Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
   }
 
   @Test
@@ -54,7 +56,7 @@ public class LexerTest {
     String code = Utils.getCode(codeDirectory);
     List<Token> resultTokens = lexer.lex(code);
 
-    Assertions.assertEquals(Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
+    Assertions.assertEquals(
+        Utils.getTokensAsString(resultTokens), Utils.getOutput(outputDirectory));
   }
-
 }

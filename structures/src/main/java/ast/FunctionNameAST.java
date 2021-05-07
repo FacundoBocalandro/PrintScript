@@ -38,10 +38,6 @@ public class FunctionNameAST implements AST {
 
   @Override
   public String print() {
-    return "{"
-            + value.print()
-            + "|"
-            + child.print()
-            + "}";
+    return "{" + value.print() + "|" + child.print() + "}";
   }
 }

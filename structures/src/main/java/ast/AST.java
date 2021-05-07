@@ -14,11 +14,11 @@ public interface AST {
 
   default String print() {
     return "{"
-            + ((getLeftChild() == null) ? "null" : getLeftChild().print())
-            + "|"
-            + getValue().print()
-            + "|"
-            + ((getRightChild() == null) ? "null" : getRightChild().print())
-            + "}";
+        + ((getLeftChild() == null) ? "null" : getLeftChild().print())
+        + "|"
+        + getValue().print()
+        + "|"
+        + ((getRightChild() == null) ? "null" : getRightChild().print())
+        + "}";
   }
 }
